@@ -12,6 +12,8 @@ public class Rentals {
     private int id;
     private LocalDate borrowDate;
     private LocalDate returnDate;
+    private Copies copies;
+    private Members members;
 
     public Rentals() {
     }
@@ -20,6 +22,26 @@ public class Rentals {
         this.id = id;
         this.borrowDate = borrowDate;
         this.returnDate = returnDate;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    public Members getMembers() {
+        return members;
+    }
+
+    public void setMembers(Members members) {
+        this.members = members;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "COPY_ID")
+    public Copies getCopies() {
+        return copies;
+    }
+
+    public void setCopies(Copies copies) {
+        this.copies = copies;
     }
 
     @Id

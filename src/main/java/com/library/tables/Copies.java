@@ -1,24 +1,40 @@
 package com.library.tables;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "BOOKS_COPIES")
 public class Copies {
 
+    public enum Status {
+        AVAILABLE,
+        RENTED,
+        WASTED,
+        LOST
+    }
+
     private int serialNumber;
-    private String status;
+    private Status status;
+    private Titles titles;
 
     public Copies() {
     }
 
-    public Copies(int serialNumber, String status) {
+    public Copies(int serialNumber, Status status) {
         this.serialNumber = serialNumber;
         this.status = status;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "TITLE_ID")
+    public Titles getTitles() {
+        return titles;
+    }
+
+    public void setTitles(Titles titles) {
+        this.titles = titles;
     }
 
     @Id
@@ -30,7 +46,7 @@ public class Copies {
 
     @NotNull
     @Column(name = "STATUS")
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
@@ -38,7 +54,7 @@ public class Copies {
         this.serialNumber = serialNumber;
     }
 
-    private void setStatus(String status) {
+    private void setStatus(Status status) {
         this.status = status;
     }
 }

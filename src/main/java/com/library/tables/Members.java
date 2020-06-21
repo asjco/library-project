@@ -3,6 +3,8 @@ package com.library.tables;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "LIBRARY_MEMBERS")
@@ -12,14 +14,30 @@ public class Members {
     private String firstName;
     private String lastName;
     private LocalDate accountCreateDate;
+    private List<Rentals> rentals = new ArrayList<>();
 
     public Members() {
     }
 
-    public Members(String firstName, String lastName, LocalDate accountCreateDate) {
+    public Members(int id, String firstName, String lastName, LocalDate accountCreateDate) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.accountCreateDate = accountCreateDate;
+    }
+
+    @OneToMany(
+            targetEntity = Rentals.class,
+            mappedBy = "members",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public List<Rentals> getRentals() {
+        return rentals;
+    }
+
+    public void setRentals(List<Rentals> rentals) {
+        this.rentals = rentals;
     }
 
     @Id

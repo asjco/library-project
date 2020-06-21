@@ -3,6 +3,8 @@ package com.library.tables;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.Year;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "BOOKS_TITLES")
@@ -12,6 +14,7 @@ public class Titles {
     private String title;
     private String author;
     private Year yearOfPublication;
+    private List<Copies> copies = new ArrayList<>();
 
     public Titles() {
     }
@@ -21,6 +24,20 @@ public class Titles {
         this.title = title;
         this.author = author;
         this.yearOfPublication = yearOfPublication;
+    }
+
+    @OneToMany(
+            targetEntity = Copies.class,
+            mappedBy = "titles",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public List<Copies> getCopies() {
+        return copies;
+    }
+
+    public void setCopies(List<Copies> copies) {
+        this.copies = copies;
     }
 
     @Id
