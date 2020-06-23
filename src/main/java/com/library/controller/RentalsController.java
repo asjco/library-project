@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/rentals")
 public class RentalsController {
-    @Autowired
+
     private RentalsDbService rentalsService;
-    @Autowired
     private RentalsMapper rentalsMapper;
 
+    @Autowired
+    public RentalsController(RentalsDbService rentalsService, RentalsMapper rentalsMapper) {
+        this.rentalsService = rentalsService;
+        this.rentalsMapper = rentalsMapper;
+    }
 }

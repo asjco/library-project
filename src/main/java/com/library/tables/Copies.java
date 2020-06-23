@@ -8,21 +8,14 @@ import javax.validation.constraints.NotNull;
 @Table(name = "BOOKS_COPIES")
 public class Copies {
 
-    public enum Status {
-        AVAILABLE,
-        RENTED,
-        WASTED,
-        LOST
-    }
-
     private int serialNumber;
-    private Status status;
+    private String status;
     private Titles titles;
 
     public Copies() {
     }
 
-    public Copies(int serialNumber, Status status) {
+    public Copies(int serialNumber, String status) {
         this.serialNumber = serialNumber;
         this.status = status;
     }
@@ -46,7 +39,7 @@ public class Copies {
 
     @NotNull
     @Column(name = "STATUS")
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
@@ -54,7 +47,7 @@ public class Copies {
         this.serialNumber = serialNumber;
     }
 
-    private void setStatus(Status status) {
+    private void setStatus(String status) {
         this.status = status;
     }
 }

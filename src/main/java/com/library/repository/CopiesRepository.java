@@ -13,6 +13,6 @@ public interface CopiesRepository extends CrudRepository<Copies, Long> {
     @Override
     Copies save(Copies copy);
 
-    List<Copies> findAllByStatus(Copies.Status status);
+    List<Copies> findAllByStatus(String status);
 
 }

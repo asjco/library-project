@@ -9,9 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/members")
 public class MembersController {
-    @Autowired
+
     private MembersDbService membersService;
-    @Autowired
     private MembersMapper membersMapper;
-    
+
+    @Autowired
+    public MembersController(MembersDbService membersService, MembersMapper membersMapper) {
+        this.membersService = membersService;
+        this.membersMapper = membersMapper;
+    }
 }

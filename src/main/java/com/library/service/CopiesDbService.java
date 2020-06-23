@@ -17,7 +17,7 @@ public class CopiesDbService {
         return copiesRepository.findAll();
     }
 
-    public  List<Copies> getAllByStatus(final Copies.Status status){
+    public  List<Copies> getAllByStatus(final String status){
        return copiesRepository.findAllByStatus(status);
     }
 

@@ -9,5 +9,5 @@ import lombok.Getter;
 public class CopiesDto {
 
     private int serialNumber;
-    private Copies.Status status;
+    private String status;
 }

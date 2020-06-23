@@ -16,10 +16,15 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RestController
 @RequestMapping("/v1/titles")
 public class TitlesController {
-    @Autowired
+
     private TitlesDbService titlesService;
-    @Autowired
     private TitlesMapper titlesMapper;
+
+    @Autowired
+    public TitlesController(TitlesDbService titlesService, TitlesMapper titlesMapper) {
+        this.titlesService = titlesService;
+        this.titlesMapper = titlesMapper;
+    }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTitle", consumes = APPLICATION_JSON_VALUE)
     public void createTitle(@RequestBody TitlesDto titlesDto){
