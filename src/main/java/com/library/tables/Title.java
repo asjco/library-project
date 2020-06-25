@@ -8,18 +8,18 @@ import java.util.List;
 
 @Entity
 @Table(name = "BOOKS_TITLES")
-public class Titles {
+public class Title {
 
     private int id;
     private String title;
     private String author;
     private Year yearOfPublication;
-    private List<Copies> copies = new ArrayList<>();
+    private List<Copy> copies = new ArrayList<>();
 
-    public Titles() {
+    public Title() {
     }
 
-    public Titles(int id, String title, String author, Year yearOfPublication) {
+    public Title(int id, String title, String author, Year yearOfPublication) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -27,16 +27,16 @@ public class Titles {
     }
 
     @OneToMany(
-            targetEntity = Copies.class,
-            mappedBy = "titles",
+            targetEntity = Copy.class,
+            mappedBy = "title",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    public List<Copies> getCopies() {
+    public List<Copy> getCopies() {
         return copies;
     }
 
-    public void setCopies(List<Copies> copies) {
+    public void setCopies(List<Copy> copies) {
         this.copies = copies;
     }
 

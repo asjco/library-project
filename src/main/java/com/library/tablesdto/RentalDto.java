@@ -7,10 +7,11 @@ import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
-public class MembersDto {
+public class RentalDto {
 
     private int id;
-    private String firstName;
-    private String lastName;
-    private LocalDate accountCreateDate;
+    private LocalDate returnDate;
+    private int copyId;
+    private int memberId;
+
 }

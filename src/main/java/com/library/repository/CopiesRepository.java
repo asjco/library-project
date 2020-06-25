@@ -1,18 +1,21 @@
 package com.library.repository;
 
-import com.library.tables.Copies;
+import com.library.tables.Copy;
+import com.library.tables.Title;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface CopiesRepository extends CrudRepository<Copies, Long> {
+public interface CopiesRepository extends CrudRepository<Copy, Long> {
 
     @Override
-    List<Copies> findAll();
+    List<Copy> findAll();
 
     @Override
-    Copies save(Copies copy);
+    Copy save(Copy copy);
 
-    List<Copies> findAllByStatus(String status);
+    List<Copy> findAllByStatus(String status);
+
+    Copy findBySerialNumber(int serialNumber);
 
 }

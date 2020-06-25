@@ -7,7 +7,7 @@ import java.time.Year;
 
 @Getter
 @AllArgsConstructor
-public class TitlesDto {
+public class TitleDto {
 
     private int id;
     private String title;

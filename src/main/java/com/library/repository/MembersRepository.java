@@ -1,16 +1,18 @@
 package com.library.repository;
 
-import com.library.tables.Members;
+import com.library.tables.Member;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface MembersRepository extends CrudRepository<Members, Long> {
+public interface MembersRepository extends CrudRepository<Member, Long> {
 
     @Override
-    Members save(Members member);
+    Member save(Member member);
 
     @Override
-    List<Members> findAll();
+    List<Member> findAll();
+
+    Member findById(int id);
 
 }

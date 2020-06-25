@@ -1,17 +1,17 @@
 package com.library.repository;
 
-import com.library.tables.Rentals;
+import com.library.tables.Rental;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface RentalsRepository extends CrudRepository<Rentals, Long> {
+public interface RentalsRepository extends CrudRepository<Rental, Long> {
 
     @Override
-    List<Rentals> findAll();
+    List<Rental> findAll();
 
     @Override
-    Rentals save(Rentals rental);
+    Rental save(Rental rental);
 
     @Override
     void deleteById(Long id);

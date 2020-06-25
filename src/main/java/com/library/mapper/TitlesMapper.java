@@ -1,7 +1,7 @@
 package com.library.mapper;
 
-import com.library.tables.Titles;
-import com.library.tablesdto.TitlesDto;
+import com.library.tables.Title;
+import com.library.tablesdto.TitleDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,25 +10,25 @@ import java.util.stream.Collectors;
 @Component
 public class TitlesMapper {
 
-    public Titles mapToTitles(final TitlesDto titlesDto) {
-        return new Titles(
-                titlesDto.getId(),
-                titlesDto.getTitle(),
-                titlesDto.getAuthor(),
-                titlesDto.getYearOfPublication());
+    public Title mapToTitles(final TitleDto titleDto) {
+        return new Title(
+                titleDto.getId(),
+                titleDto.getTitle(),
+                titleDto.getAuthor(),
+                titleDto.getYearOfPublication());
     }
 
-    public TitlesDto mapToTitlesDto(final Titles titles) {
-        return new TitlesDto(
-                titles.getId(),
-                titles.getTitle(),
-                titles.getAuthor(),
-                titles.getYearOfPublication());
+    public TitleDto mapToTitlesDto(final Title title) {
+        return new TitleDto(
+                title.getId(),
+                title.getTitle(),
+                title.getAuthor(),
+                title.getYearOfPublication());
     }
 
-    public List<TitlesDto> mapToTitlesDtoList(final List<Titles> titlesList) {
+    public List<TitleDto> mapToTitlesDtoList(final List<Title> titlesList) {
         return titlesList.stream()
-                .map(t -> new TitlesDto(t.getId(), t.getTitle(), t.getAuthor(), t.getYearOfPublication()))
+                .map(t -> new TitleDto(t.getId(), t.getTitle(), t.getAuthor(), t.getYearOfPublication()))
                 .collect(Collectors.toList());
     }
 }

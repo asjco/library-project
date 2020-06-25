@@ -8,18 +8,18 @@ import java.util.List;
 
 @Entity
 @Table(name = "LIBRARY_MEMBERS")
-public class Members {
+public class Member {
 
     private int id;
     private String firstName;
     private String lastName;
     private LocalDate accountCreateDate;
-    private List<Rentals> rentals = new ArrayList<>();
+    private List<Rental> rentals = new ArrayList<>();
 
-    public Members() {
+    public Member() {
     }
 
-    public Members(int id, String firstName, String lastName, LocalDate accountCreateDate) {
+    public Member(int id, String firstName, String lastName, LocalDate accountCreateDate) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -27,16 +27,16 @@ public class Members {
     }
 
     @OneToMany(
-            targetEntity = Rentals.class,
-            mappedBy = "members",
+            targetEntity = Rental.class,
+            mappedBy = "member",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    public List<Rentals> getRentals() {
+    public List<Rental> getRentals() {
         return rentals;
     }
 
-    public void setRentals(List<Rentals> rentals) {
+    public void setRentals(List<Rental> rentals) {
         this.rentals = rentals;
     }
 

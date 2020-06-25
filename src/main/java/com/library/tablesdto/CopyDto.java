@@ -1,13 +1,13 @@
 package com.library.tablesdto;
 
-import com.library.tables.Copies;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class CopiesDto {
+public class CopyDto {
 
     private int serialNumber;
     private String status;
+    private int titleId;
 }

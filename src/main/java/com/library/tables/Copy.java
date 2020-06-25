@@ -6,28 +6,28 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "BOOKS_COPIES")
-public class Copies {
+public class Copy {
 
     private int serialNumber;
     private String status;
-    private Titles titles;
+    private Title title;
 
-    public Copies() {
+    public Copy() {
     }
 
-    public Copies(int serialNumber, String status) {
+    public Copy(int serialNumber, String status) {
         this.serialNumber = serialNumber;
         this.status = status;
     }
 
     @ManyToOne
     @JoinColumn(name = "TITLE_ID")
-    public Titles getTitles() {
-        return titles;
+    public Title getTitle() {
+        return title;
     }
 
-    public void setTitles(Titles titles) {
-        this.titles = titles;
+    public void setTitle(Title title) {
+        this.title = title;
     }
 
     @Id

@@ -1,9 +1,7 @@
 package com.library.controller;
 
-import com.library.mapper.TitlesMapper;
 import com.library.service.TitlesDbService;
-import com.library.tablesdto.TitlesDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.library.tablesdto.TitleDto;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,22 +16,23 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 public class TitlesController {
 
     private TitlesDbService titlesService;
-    private TitlesMapper titlesMapper;
 
-    @Autowired
-    public TitlesController(TitlesDbService titlesService, TitlesMapper titlesMapper) {
+    public TitlesController(TitlesDbService titlesService) {
         this.titlesService = titlesService;
-        this.titlesMapper = titlesMapper;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTitle", consumes = APPLICATION_JSON_VALUE)
-    public void createTitle(@RequestBody TitlesDto titlesDto){
-        titlesService.saveTitle(titlesMapper.mapToTitles(titlesDto));
+    public void createTitle(@RequestBody TitleDto titleDto){
+        titlesService.saveTitle(titleDto);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "getTitles")
-    public List<TitlesDto> getAllTitles() {
-        return titlesMapper.mapToTitlesDtoList(titlesService.getAllTitles());
+    public List<TitleDto> getAllTitles() {
+        return titlesService.getAllTitles();
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "deleteAll")
+    public void deleteAll(){
+        titlesService.deleteAll();
+    }
 }

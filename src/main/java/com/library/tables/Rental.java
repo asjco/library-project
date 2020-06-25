@@ -3,45 +3,43 @@ package com.library.tables;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "RENTALS")
-public class Rentals {
+public class Rental {
 
     private int id;
-    private LocalDate borrowDate;
+    private LocalDate borrowDate = LocalDate.now();
     private LocalDate returnDate;
-    private Copies copies;
-    private Members members;
+    private Copy copy;
+    private Member member;
 
-    public Rentals() {
+    public Rental() {
     }
 
-    public Rentals(int id, LocalDate borrowDate, LocalDate returnDate) {
+    public Rental(int id, LocalDate returnDate) {
         this.id = id;
-        this.borrowDate = borrowDate;
         this.returnDate = returnDate;
     }
 
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
-    public Members getMembers() {
-        return members;
+    public Member getMember() {
+        return member;
     }
 
-    public void setMembers(Members members) {
-        this.members = members;
+    public void setMember(Member member) {
+        this.member = member;
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "COPY_ID")
-    public Copies getCopies() {
-        return copies;
+    public Copy getCopy() {
+        return copy;
     }
 
-    public void setCopies(Copies copies) {
-        this.copies = copies;
+    public void setCopy(Copy copy) {
+        this.copy = copy;
     }
 
     @Id

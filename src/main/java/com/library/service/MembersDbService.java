@@ -1,8 +1,9 @@
 package com.library.service;
 
+import com.library.mapper.MembersMapper;
 import com.library.repository.MembersRepository;
-import com.library.tables.Members;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.library.tables.Member;
+import com.library.tablesdto.MemberDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,14 +11,19 @@ import java.util.List;
 @Service
 public class MembersDbService {
 
-    @Autowired
     private MembersRepository membersRepository;
+    private MembersMapper membersMapper;
 
-    public List<Members> getAllMembers(){
-        return membersRepository.findAll();
+    public MembersDbService(MembersRepository membersRepository, MembersMapper membersMapper) {
+        this.membersRepository = membersRepository;
+        this.membersMapper = membersMapper;
     }
 
-    public void saveMember(final Members member){
-        membersRepository.save(member);
+    public List<MemberDto> getAllMembers(){
+        return membersMapper.mapToMembersDtoList(membersRepository.findAll());
+    }
+
+    public void saveMember(final MemberDto memberDto){
+        membersRepository.save(membersMapper.mapToMembers(memberDto));
     }
 }
